@@ -1,0 +1,45 @@
+#tower of hanoi(GFG)
+class Solution:
+    def  towerOfHanoi(self, n, fromm, to, aux):
+        # code here
+        if n==0:
+            return 0
+        maxi=self.towerOfHanoi(n-1,fromm,aux,to)
+        maxi+=1
+        maxi+=self.towerOfHanoi(n-1,aux,to,fromm)
+        return maxi
+          
+#LC-344-(reverse-a-string)
+class Solution(object):
+    def reverseString(self, s):
+        """
+        :type s: List[str]
+        :rtype: None Do not return anything, modify s in-place instead.
+        """
+        def rev(left,right):
+            if left>=right:
+                return
+            s[left],s[right]=s[right],s[left]
+            rev(left+1,right-1)
+        rev(0,len(s)-1)
+
+#LC-24-Swap-Nodes-in-pair
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def swapPairs(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        if not head or not head.next:
+            return head
+        first=head
+        second=head.next
+        first.next=self.swapPairs(second.next)
+        second.next=first
+        return second
+
